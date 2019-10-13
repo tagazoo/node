@@ -1,0 +1,8 @@
+FROM ubuntu:18.04
+RUN apt update -y && apt install -y python3 python3-pip iputils-ping nmap
+RUN pip3 install requests feedparser docopt
+RUN mkdir /root/tests /root/node
+COPY tests /root/tests
+COPY node /root/node
+WORKDIR /root
+CMD ["python3", "-m", "unittest", "discover", "tests"]
